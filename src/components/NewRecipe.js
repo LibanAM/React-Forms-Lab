@@ -17,7 +17,7 @@ const NewRecipe = ({handleButtonClick}) => {
             <input type="text" placeholder="Recipe rating"></input>
             <br/>
         </form> */}
-        <button onClick={handleButtonClick}>Submit a new recipe</button>
+        <button id="addRecipeButton" onClick={handleButtonClick}>Submit a new recipe</button>
         </>
     );
 }

@@ -4,6 +4,8 @@ import RecipeList from "../components/RecipeList";
 
 
 
+
+
 const RecipeContainer = () => {
 
     const [recipes, setRecipes] = useState([
@@ -44,15 +46,26 @@ const RecipeContainer = () => {
         const newCakeName = inputValueRefCakeName.current.value;
         const newIngredients = inputValueRefCakeIngredients.current.value.split(',');
         const newRating = inputValueRefCakeRating.current.value;
+        if (newRating > 5 || newRating < 1 || newRating === ""){
+            alert("The rating you submitted is not value! Choose a new one!");
+        } else if (newCakeName === "" || newIngredients === "") {
+            alert("You cannot have an empty input");
+        } else {
+            setRecipes(prevRecipes => [...prevRecipes, {cakeName: newCakeName, ingredients: newIngredients, rating: newRating}]);
+        }
         // const updatedRecipes = [...recipes, newRecipe];
-        setRecipes(prevRecipes => [...prevRecipes, {cakeName: newCakeName, ingredients: newIngredients, rating: newRating}]);
+      }
+
+      const filterRecipes = () => {
+        
       }
 
     return (
         <>
-        <h1>Recipes</h1>
+        <div id="recipes">
         <RecipeList recipes = {recipes}/>
-        <form>
+        </div>
+        <form className="form" id="form">
             <label>Cake name: </label>
             <input type="text" placeholder="Recipe Name" ref={inputValueRefCakeName}></input>
             <br/>
@@ -64,7 +77,6 @@ const RecipeContainer = () => {
             <br/>
         </form>
         <NewRecipe handleButtonClick={addNewRecipe} />
-       
         </>
     )
 }

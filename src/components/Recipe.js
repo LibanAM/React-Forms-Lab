@@ -12,7 +12,7 @@ const Recipe = ({recipe}) => {
             <div className="recipe-card">
                 <h3>{recipe.cakeName}</h3>
                 <ul>{ingredientsList}</ul>
-                <p>{recipe.rating}</p>
+                <p>Rating: {recipe.rating}</p>
 
             </div>    
         </>
