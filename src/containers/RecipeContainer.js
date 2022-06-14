@@ -60,40 +60,21 @@ const RecipeContainer = () => {
 
     const inputValueRefSearch = useRef();
 
-
     const filterBySearch = () => {
         const searchValue = inputValueRefSearch.current.value;
         console.log(searchValue);
-
-        // const filteredRecipes = recipes.filter((recipe, index) => recipe.cakeName === searchValue);
-        // console.log(filteredRecipes);
-        // return (<RecipeList recipes = {filteredRecipes}/>)
-
-
-        const recipesMap = recipes.map((recipe, index) => {
-            if (recipe.cakeName === searchValue) {
-                // document.getElementById("recipes").innerHTML = "";
-                return recipes[index];
-                // return <Recipe key={index}
-                // recipe={recipe}/>
-            }
-            else {
-
-                return null;
-            
-            }
-        })
-
-        recipes = recipesMap;
-        return(<RecipeList recipes/>)
-
-
-        console.log(recipesMap);
-        if (recipesMap[0] === undefined) {
-            alert("There is no recipe with that name!")
+        const filteredRecipes = recipes.filter((recipe, index) => recipe.cakeName = searchValue);
+        if (filteredRecipes.length >= 1) {
+            const filteredCakeName = filteredRecipes[0].cakeName;
+            let filteredIngredients = [];
+            filteredIngredients = filteredRecipes[0].ingredients;
+            const filteredRating = filteredRecipes[0].rating;
+            document.getElementById("recipes").innerHTML = "";
+            setRecipes(prevRecipes => [...prevRecipes, {cakeName: filteredCakeName, ingredients: filteredIngredients, rating: filteredRating }])
         }
-
-
+        else if (filteredRecipes.length === 0) {
+            alert("There are no recipes with that name...");
+        }
     }
 
     const filterRecipes = () => {
@@ -106,10 +87,9 @@ const RecipeContainer = () => {
                 <a href="#home"><h1>RECIPES!!</h1></a>
                 <nav id="nav-bar">
                     <ul>
-                        <li><a href="#recipes">RECIPES</a></li>
+                        <li><a href="javascript:window.location.reload(true)">RECIPES</a></li>
                         <li><a href="#form">ADD A NEW RECIPE</a></li>
                     </ul>
-
                     <input placeholder="SEARCH" type="text" ref={inputValueRefSearch}></input>
                     <button id="button" onClick={filterBySearch}>SEARCH</button>
                 </nav>
