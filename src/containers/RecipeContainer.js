@@ -44,11 +44,12 @@ const RecipeContainer = () => {
         //     rating: 9
         // }
         const newCakeName = inputValueRefCakeName.current.value;
-        const newIngredients = inputValueRefCakeIngredients.current.value.split(',');
+        let newIngredients = [];
+        newIngredients = inputValueRefCakeIngredients.current.value.split(',');
         const newRating = inputValueRefCakeRating.current.value;
         if (newRating > 5 || newRating < 1 || newRating === ""){
             alert("The rating you submitted is not value! Choose a new one!");
-        } else if (newCakeName === "" || newIngredients === "") {
+        } else if (newCakeName === "" || newIngredients[0] === "") {
             alert("You cannot have an empty input");
         } else {
             setRecipes(prevRecipes => [...prevRecipes, {cakeName: newCakeName, ingredients: newIngredients, rating: newRating}]);
