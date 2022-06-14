@@ -24,8 +24,6 @@ const Header = () => {
     const filterBySearch = () => {
         const searchValue = inputValueRefSearch.current.value;
         console.log(searchValue);
-
-
     }
 
     return (
